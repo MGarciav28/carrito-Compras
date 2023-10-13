@@ -34,15 +34,35 @@ function leerDatosCurso(curso){
         id: curso.querySelector('a').getAttribute('data-id'),
         cantidad: 1 
     }
-    console.log(infoCurso)
+   
+    //revisa si un elemento ya se encuentra en el arreglo
+    const existe = articulosCarrito.some(curso=>curso.id===infoCurso.id)
+    if(existe){
+        //Actualizamos la cantidad 
+        const cursos = articulosCarrito.map(curso=>{
+            if(curso.id===infoCurso.id){
+                curso.cantidad++;
+                return curso;
+            }else{
+                return curso;
+            }            
+        })
 
-    //Agregar elementos al carrito
-    articulosCarrito= [...articulosCarrito, infoCurso];
+    }else{
+        //Agregamos articulo al carrito
+        articulosCarrito= [...articulosCarrito, infoCurso];
+    }
+   
+    
     carritoHTML();
 }
 
+//Agrega los elementos al HTML
 function carritoHTML(){
+    //Limpia el HTML del carrito antes de comenzar
     limpiarCarrito()
+
+    //Recorre cada elemento del arreglo crrito y lo agrega al HTML
     articulosCarrito.forEach(curso =>{
         const{imagen, titulo, precio,id,cantidad}=curso;
         const row = document.createElement('tr');
