@@ -1,7 +1,7 @@
 //Variables
 const carrito = document.querySelector('#carrito');
-const listaCursos = docuemnt.querySelector('#lista-cursos');
-const contenedorCarrito = docuemnt.queruSelector('#lista-carrito tbody');
+const listaCursos = document.querySelector('#lista-cursos');
+const contenedorCarrito = document.querySelector('#lista-carrito tbody');
 const vaciarCarritoBtn = document.querySelector('#vaciar-carrito')
 let articulosCarrito = [];
 
@@ -14,7 +14,7 @@ listaCursos.addEventListener('click', agregarCurso);
 //Funcion de agregar carrito
 function agregarCurso(e){
     e.preventDefault();
-    if(e.target.classList.contains('agregar-carrito'){
+    if(e.target.classList.contains('agregar-carrito')){
         const cursoSeleccionado = e.target.parentElement.parentElement;
         console.log('Se acaba de agregar el curso')
         leerDatosCurso(cursoSeleccionado);
@@ -29,11 +29,12 @@ function leerDatosCurso(curso){
     //Crear objeto del curso actual
     const infoCurso = {
         imagen: curso.querySelector('img').src,
-        titulo: curso.querySelector('h4').textContent,
+        titulo: curso.querySelector('h3').textContent,
         precio: curso.querySelector('.precio span').textContent,
-        id: curso.querySelector('a').getAtTribute('data-id'),
-        cantidad: 1
+        id: curso.querySelector('a').getAttribute('data-id'),
+        cantidad: 1 
     }
+    console.log(infoCurso)
 
     //Agregar elementos al carrito
     articulosCarrito= [...articulosCarrito, infoCurso];
